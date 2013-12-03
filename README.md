@@ -1,7 +1,7 @@
 <h1>SEPA para Harbour</h1>
 <h3>Generación de ficheros para normas AEB (Asociación Española de Banca) 
-adaptadas a SEPA (Single Euro Payments Area), en formato texto
-Para periodo transitorio hasta 31-Enero-2016</h3>
+adaptadas a SEPA (Single Euro Payments Area), en formato texto<h3>
+<h4>Para periodo transitorio hasta 31-Enero-2016</h4>
 =====================================================================
 <ul>
 <li>aeb1914 Adeudos Directos CORE Direct Debit (para particulares)</li>
