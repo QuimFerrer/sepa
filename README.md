@@ -4,9 +4,9 @@ adaptadas a SEPA (Single Euro Payments Area), en formato texto
 Para periodo transitorio hasta 31-Enero-2016</h3>
 =====================================================================
 <ul>
-<li>./aeb1914 Adeudos Directos CORE Direct Debit (para particulares)</li>
-<li>./aeb1944 Adeudos Directos B2B Direct Debit (entre empresas)</li>
-<li>./aeb3414 Ordenes en fichero para emision de transferencias y cheques en euros.</li>
+<li>aeb1914 Adeudos Directos CORE Direct Debit (para particulares)</li>
+<li>aeb1944 Adeudos Directos B2B Direct Debit (entre empresas)</li>
+<li>aeb3414 Ordenes en fichero para emision de transferencias y cheques en euros.</li>
 </ul>
 Notas
 -----
