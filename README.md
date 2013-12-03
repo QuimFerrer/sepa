@@ -3,11 +3,11 @@
 adaptadas a SEPA (Single Euro Payments Area), en formato texto
 Para periodo transitorio hasta 31-Enero-2016</h3>
 =====================================================================
-
-./aeb1914 Adeudos Directos CORE Direct Debit (para particulares)
-./aeb1944 Adeudos Directos B2B Direct Debit (entre empresas)
-./aeb3414 Ordenes en fichero para emision de transferencias y cheques en euros.
-
+<ul>
+<li>./aeb1914 Adeudos Directos CORE Direct Debit (para particulares)</li>
+<li>./aeb1944 Adeudos Directos B2B Direct Debit (entre empresas)</li>
+<li>./aeb3414 Ordenes en fichero para emision de transferencias y cheques en euros.</li>
+</ul>
 Notas
 -----
 Cada norma dispone de su propio directorio de trabajo y utiliza sepamisc.prg del directorio raiz, a modo de 
@@ -28,9 +28,10 @@ Para establecer variables de entorno de compilacion, adaptar y/o ejecutar cset.b
 
 Otra documentación 
 ------------------
-./data Ficheros DBF con los codigos BIC para entidades bancarias españolas y europeas. 
-./doc  Ficheros PDF de las normas AEB utilizados en esta implementación y ultimas novedades SEPA Boletin BBVA
-
+<ul>
+<li>./data Ficheros DBF con los codigos BIC para entidades bancarias españolas y europeas.</li> 
+<li>./doc  Ficheros PDF de las normas AEB utilizados en esta implementación y ultimas novedades SEPA Boletin BBVA</li>
+</ul>
 
 Sugerencias y mejoras serán bienvenidas :)
 Que lo disfruten !
