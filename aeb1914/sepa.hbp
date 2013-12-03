@@ -1,0 +1,11 @@
+#make
+
+-n -q0 -static
+
+-Ic:\hb30\include
+
+-osepa.exe
+
+#sources
+..\sepamisc.prg
+sepa1914.prg   
