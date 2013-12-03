@@ -10,20 +10,20 @@ Para periodo transitorio hasta 31-Enero-2016</h3>
 </ul>
 Notas
 -----
-Cada norma dispone de su propio directorio de trabajo y utiliza sepamisc.prg del directorio raiz, a modo de 
+Cada norma dispone de su propio directorio de trabajo y utiliza <em>sepamisc.prg</em> del directorio raiz, a modo de 
 libreria de funciones misceláneas, comunes a todas las normas. 
 
 Se ha desarrollado pensando en la implementación más simple, para que pueda ser fácilmente trasladable a otros
 paradigmas (OOPS, arrays asociativos) e incluso a otros lenguajes (PHP, Java... )
 
-hbSepa.prg es un embrión de clase OOPS para Harbour, para encapsulación de todas las normas.
+<em>hbSepa.prg</em> es un embrión de clase OOPS para Harbour, para encapsulación de todas las normas.
 
 
 Construccion y entorno
 ----------------------
-Cada norma dispone de c.bat para automatizar la creación del ejecutable, que no es más que una llamada
+Cada norma dispone de <em>c.bat</em> para automatizar la creación del ejecutable, que no es más que una llamada
 simplificada a la utilidad make hbmk2 de harbour.
-Para establecer variables de entorno de compilacion, adaptar y/o ejecutar cset.bat 
+Para establecer variables de entorno de compilacion, adaptar y/o ejecutar <em>cset.bat</em> 
 
 
 Otra documentación 
