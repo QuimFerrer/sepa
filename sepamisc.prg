@@ -1,5 +1,5 @@
 /* v.1.0 14/11/2013
- * Funciones misceláneas e apoyo a formatos SEPA
+ * Funciones misceláneas de apoyo a formatos SEPA
  * (c) Joaquim Ferrer Godoy <quim_ferrer@yahoo.es>
  */
 
