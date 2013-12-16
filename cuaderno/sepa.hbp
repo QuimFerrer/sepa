@@ -1,0 +1,10 @@
+#make
+
+-n -q0 -static
+
+-Ic:\hb30\include
+
+-osepa.exe
+
+#sources
+cuaderno.prg   
