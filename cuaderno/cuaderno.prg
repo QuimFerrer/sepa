@@ -1,11 +1,12 @@
-#include "FiveWin.Ch"
+#include "hbclass.ch"
+
+#define CRLF chr(13)+chr(10)
 
 //---------------------------------------------------------------------------//
 
 Function DecimalToString( nValue, nLen )
 
    local cValue       
-      
    cValue   := str( nValue, nLen + 1, 2 )    // +1 espacio que resta punto decimal
    cValue   := strtran( cValue, "." )        // Quitar punto decimal
    cValue   := strtran( cValue, " ", "0" )   // Reemplazar espacios por 0
@@ -25,15 +26,17 @@ Return ( cTime )
 
 Function DateToString( dDate )
       
-   DEFAULT dDate  := date()
+   local cDateFrm := Set( 4, "yyyy/mm/dd" )
+   local strDate  := If( dDate != NIL, dtos(dDate), dtos(date()) )
+   Set( 4, cDateFrm )
 
-Return ( dtos( dDate ) )
+Return( strDate )
 
 //---------------------------------------------------------------------------//
 
 CLASS Cuaderno
 
-   DATA cFile                             INIT "c:\prueba.txt" 
+   DATA cFile                             INIT "prueba.txt" 
    DATA hFile 
    DATA cFechaCreacion                    INIT DateToString()
 
@@ -369,7 +372,7 @@ ENDCLASS
 
 //---------------------------------------------------------------------------//
 
-Function TestCuaderno1914()
+Function main()
 
    local oCuaderno   := Cuaderno1914():New()
 
@@ -446,7 +449,7 @@ Function TestCuaderno1914()
       :CuentaIBAN( "ES7600811234461234567890" )   
    end with
 
-   // Dudor--------------------------------------------------------------------
+   // Deudor--------------------------------------------------------------------
 
    with object ( oCuaderno:InsertDeudor() )
       :Referencia( 'RECIBO002401' )
@@ -482,7 +485,7 @@ Function TestCuaderno1914()
 
    oCuaderno:SerializeASCII()
 
-   WinExec( "notepad.exe " + AllTrim( oCuaderno:cFile ) )
+   __Run( "notepad.exe " + AllTrim( oCuaderno:cFile ) )
 
 Return ( nil ) 
 
