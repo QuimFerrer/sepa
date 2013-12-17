@@ -16,7 +16,7 @@
 function main()
 	
 	local cFile   := "test3414.txt"
-	local nHandle := fcreate( cFile, FO_READ + FO_EXCLUSIVE )
+	local nHandle := fcreate( cFile, FO_READWRITE + FO_EXCLUSIVE )
 	local nError  := ferror()
 
 	if nError != 0
