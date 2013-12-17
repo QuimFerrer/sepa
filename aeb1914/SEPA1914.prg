@@ -15,7 +15,7 @@
 function main()
 
 	local cFile   := "test1914.txt"
-	local nHandle := fcreate( cFile, FO_READ + FO_EXCLUSIVE )
+	local nHandle := fcreate( cFile, FO_READWRITE + FO_EXCLUSIVE )
 	local nError  := ferror()
 
 	if nError != 0
@@ -53,10 +53,10 @@ static function GenFile(nHandle)
 	acre_Nif	 	:= "E77846772"
 	acre_Cta 		:= 'ES7600811234461234567890'
 																// FNAL Último adeudo de varios FRST Primer adeudo de varios 
-	deut_Adeudo 	:= 'OOFF'									// OOFF Unico pago RCUR Adeudo de varios que no es FNAL ni FRST
+	deut_Adeudo 	:= 'RCUR'									// OOFF Unico pago RCUR Adeudo de varios que no es FNAL ni FRST
 	deut_Categoria	:= ''										// Opcional segun tabla de categorias de proposito
 	deut_Referencia := 'RECIBO002401'							// Referencia unica para identificacion del recibo
-	deut_RMandato 	:= '2E5F9458BCD27E3C2B5908AF0B91551A' 		// Referencia unica orden domiciliación. Utilizar hash, p.e., MD5
+	deut_RMandato 	:= hb_md5("002050")					 		// Ref.unica orden domiciliación. Utilizar hash, p.e., codigo cliente
 	deut_DMandato 	:= ctod('05-20-2013') 						// Fecha orden domiciliación o mandato	
 	deut_Nombre 	:= 'NOMBRE DEL DEUDOR, S.L.'
 	deut_Direcc 	:= 'CALLE DEL DEUDOR, 432'
