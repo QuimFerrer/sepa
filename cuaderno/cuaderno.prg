@@ -1,12 +1,13 @@
 #include "hbclass.ch"
 
-#define CRLF chr(13)+chr(10)
+#define CRLF chr( 13 ) + chr( 10 )
 
 //---------------------------------------------------------------------------//
 
 Function DecimalToString( nValue, nLen )
 
    local cValue       
+      
    cValue   := str( nValue, nLen + 1, 2 )    // +1 espacio que resta punto decimal
    cValue   := strtran( cValue, "." )        // Quitar punto decimal
    cValue   := strtran( cValue, " ", "0" )   // Reemplazar espacios por 0
@@ -27,7 +28,7 @@ Return ( cTime )
 Function DateToString( dDate )
       
    local cDateFrm := Set( 4, "yyyy/mm/dd" )
-   local strDate  := If( dDate != NIL, dtos(dDate), dtos(date()) )
+   local strDate  := if( dDate != NIL, dtos( dDate ), dtos( date() ) )
    Set( 4, cDateFrm )
 
 Return( strDate )
@@ -40,6 +41,7 @@ CLASS Cuaderno
    DATA hFile 
    DATA cFechaCreacion                    INIT DateToString()
 
+   METHOD Fichero( cValue )               INLINE ( if( !Empty( cValue ), ::cFile             := cValue,                 ::cFile ) )
    METHOD FechaCreacion( dValue )         INLINE ( if( !Empty( dValue ), ::cFechaCreacion    := DateToString( dValue ), ::cFechaCreacion ) )
 
 ENDCLASS
@@ -222,14 +224,14 @@ ENDCLASS
 
 CLASS Acreedor FROM Presentador
 
-   DATA cDireccion      
-   DATA cCodigoPostal
-   DATA cPoblacion 
-   DATA cProvincia      
-   DATA cCuentaIBAN     
+   DATA cDireccion               INIT Space( 50 )      
+   DATA cCodigoPostal            INIT Space( 10 )
+   DATA cPoblacion               INIT Space( 60 )       
+   DATA cProvincia               INIT Space( 40 )      
+   DATA cCuentaIBAN              INIT Space( 34 )
    DATA cFechaCobro              INIT DateToString()
 
-   DATA aChild                  INIT {}
+   DATA aChild                   INIT {}
 
    METHOD Direccion( cValue )    INLINE ( if( !Empty( cValue ), ::cDireccion     := padr( cValue, 50 ),     ::cDireccion ) )    
    METHOD CodigoPostal( cValue ) INLINE ( if( !Empty( cValue ), ::cCodigoPostal  := cValue,                 rtrim( ::cCodigoPostal ) ) )    
@@ -305,17 +307,17 @@ CLASS Deudor FROM Acreedor
    METHOD CodigoRegistro()                INLINE ( ::oSender:oSender:CodigoRegistro() )
    METHOD VersionCuaderno()               INLINE ( ::oSender:oSender:VersionCuaderno() )
 
-   METHOD Referencia( cValue )            INLINE ( if( !Empty( cValue ), ::cReferencia          := padr( cValue, 35 ),     ::cReferencia ) )
-   METHOD ReferenciaMandato( cValue )     INLINE ( if( !Empty( cValue ), ::cReferenciaMandato   := padr( cValue, 35 ),     ::cReferenciaMandato ) )
-   METHOD TipoAdeudo( cValue )            INLINE ( if( !Empty( cValue ), ::cTipoAdeudo          := padr( cValue, 4 ),      ::cTipoAdeudo ) )
-   METHOD Categoria( cValue )             INLINE ( if( !Empty( cValue ), ::cCategoria           := padr( cValue, 4 ),      ::cCategoria ) )
-   METHOD FechaMandato( dValue )          INLINE ( if( !Empty( dValue ), ::cFechaMandato        := DateToString( dValue ), ::cFechaMandato ) )
-   METHOD EntidadBIC( cValue )            INLINE ( if( !Empty( cValue ), ::cEntidadBIC          := padr( cValue, 11 ),     ::cEntidadBIC ) )
-   METHOD Tipo( cValue )                  INLINE ( if( !Empty( cValue ), ::cTipo                := padr( cValue, 1 ),      ::cTipo ) )
-   METHOD Emisor( cValue )                INLINE ( if( !Empty( cValue ), ::cEmisor              := padr( cValue, 35 ),     ::cEmisor ) )
-   METHOD IdentificadorCuenta( cValue )   INLINE ( if( !Empty( cValue ), ::cIdentificadorCuenta := padr( cValue, 1 ),      ::cIdentificadorCuenta ) )
-   METHOD Proposito( cValue )             INLINE ( if( !Empty( cValue ), ::cProposito           := padr( cValue, 4 ),      ::cProposito ) )
-   METHOD Concepto( cValue )              INLINE ( if( !Empty( cValue ), ::cConcepto            := padr( cValue, 140 ),    ::cConcepto ) )
+   METHOD Referencia( cValue )            INLINE ( if( !Empty( cValue ), ::cReferencia          := padr( cValue, 35 ),           ::cReferencia ) )
+   METHOD ReferenciaMandato( cValue )     INLINE ( if( !Empty( cValue ), ::cReferenciaMandato   := hb_md5( padr( cValue, 35 ) ), ::cReferenciaMandato ) )
+   METHOD TipoAdeudo( cValue )            INLINE ( if( !Empty( cValue ), ::cTipoAdeudo          := padr( cValue, 4 ),            ::cTipoAdeudo ) )
+   METHOD Categoria( cValue )             INLINE ( if( !Empty( cValue ), ::cCategoria           := padr( cValue, 4 ),            ::cCategoria ) )
+   METHOD FechaMandato( dValue )          INLINE ( if( !Empty( dValue ), ::cFechaMandato        := DateToString( dValue ),       ::cFechaMandato ) )
+   METHOD EntidadBIC( cValue )            INLINE ( if( !Empty( cValue ), ::cEntidadBIC          := padr( cValue, 11 ),           ::cEntidadBIC ) )
+   METHOD Tipo( cValue )                  INLINE ( if( !Empty( cValue ), ::cTipo                := padr( cValue, 1 ),            ::cTipo ) )
+   METHOD Emisor( cValue )                INLINE ( if( !Empty( cValue ), ::cEmisor              := padr( cValue, 35 ),           ::cEmisor ) )
+   METHOD IdentificadorCuenta( cValue )   INLINE ( if( !Empty( cValue ), ::cIdentificadorCuenta := padr( cValue, 1 ),            ::cIdentificadorCuenta ) )
+   METHOD Proposito( cValue )             INLINE ( if( !Empty( cValue ), ::cProposito           := padr( cValue, 4 ),            ::cProposito ) )
+   METHOD Concepto( cValue )              INLINE ( if( !Empty( cValue ), ::cConcepto            := padr( cValue, 140 ),          ::cConcepto ) )
 
    METHOD Dato()                          INLINE ( '003' )
 
@@ -372,8 +374,8 @@ ENDCLASS
 
 //---------------------------------------------------------------------------//
 
-Function main()
-
+Function TestCuaderno1914()
+/*
    local oCuaderno   := Cuaderno1914():New()
 
    // Presentador--------------------------------------------------------------
@@ -449,7 +451,7 @@ Function main()
       :CuentaIBAN( "ES7600811234461234567890" )   
    end with
 
-   // Deudor--------------------------------------------------------------------
+   // Dudor--------------------------------------------------------------------
 
    with object ( oCuaderno:InsertDeudor() )
       :Referencia( 'RECIBO002401' )
@@ -485,8 +487,8 @@ Function main()
 
    oCuaderno:SerializeASCII()
 
-   __Run( "notepad.exe " + AllTrim( oCuaderno:cFile ) )
-
+   WinExec( "notepad.exe " + AllTrim( oCuaderno:cFile ) )
+*/
 Return ( nil ) 
 
 //---------------------------------------------------------------------------//
