@@ -7,4 +7,6 @@
 -osepa.exe
 
 #sources
-cuaderno.prg   
+..\sepamisc.prg
+cuaderno.prg 
+sepa.prg  
