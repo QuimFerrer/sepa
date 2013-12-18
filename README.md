@@ -39,4 +39,4 @@ Que lo disfruten !
 
 (c)2013 Joaquim Ferrer
 <quim_ferrer@yahoo.es>
-<cite>No es que tengamos poco tiempo, sino que perdemos mucho (Séneca)</cite>
+<code>No es que tengamos poco tiempo, sino que perdemos mucho (Séneca)</code>
