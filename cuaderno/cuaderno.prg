@@ -125,7 +125,7 @@ CLASS Presentador
 
    METHOD TotalRegistros()       INLINE ( strzero( ::nTotalRegistros(), 8 ) )
    METHOD nTotalRegistros()                
-   METHOD TotalFinalRegistros()   INLINE ( strzero( ::nTotalRegistros() + 3, 10 ) )
+   METHOD TotalFinalRegistros()  INLINE ( strzero( ::nTotalRegistros() + 3, 10 ) )
 
    METHOD GetAcreedor()          INLINE ( atail( ::aChild ) )
    METHOD InsertAcreedor()       INLINE ( aadd( ::aChild, Acreedor():New( Self ) ), ::GetAcreedor() )

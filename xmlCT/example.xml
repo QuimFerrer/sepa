@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
+<CstmrCdtTrfInitn> 
+	 <GrpHdr> 
+		 <MsgId>ABC/060928/CCT001</MsgId> 
+		 <CreDtTm>2010-12-18T14:07:00</CreDtTm> 
+		 <NbOfTxs>3</NbOfTxs> 
+		 <InitgPty> 
+			 <Nm>Cobelfac</Nm> 
+			 <Id> 
+				 <OrgId> 
+					 <Othr> 
+						 <Id>0468651441</Id> 
+						 <Issr>KBO-BCE</Issr> 
+					 </Othr> 
+				 </OrgId> 
+			 </Id> 
+		 </InitgPty> 
+	 </GrpHdr> 
+	 <PmtInf> 
+		 <PmtInfId> ABC/4560/2010-12-15</PmtInfId> 
+		 <PmtMtd>TRF</PmtMtd> 
+		 <BtchBookg>false</BtchBookg> 
+		 <PmtTpInf> 
+			 <SvcLvl> 
+			 	<Cd>SEPA</Cd> 
+			 </SvcLvl> 
+		 </PmtTpInf> 
+		 <ReqdExctnDt>2010-12-19</ReqdExctnDt> 
+		 <Dbtr> 
+		 	<Nm>Cobelfac</Nm> 
+		 </Dbtr> 
+		 <DbtrAcct> 
+			<Id> 
+		 		<IBAN>BE68539007547034</IBAN> 
+			</Id> 
+		 </DbtrAcct> 
+		 <DbtrAgt> 
+			 <FinInstnId> 
+			 	<BIC>AAAABE33</BIC>
+			 </FinInstnId> 
+		 </DbtrAgt> 
+		 <CdtTrfTxInf> 
+			 <PmtId> 
+			 	<EndToEndId>ABC/4562/2010-12-18</EndToEndId> 
+			 </PmtId> 
+			 <Amt> 
+			 	<InstdAmt Ccy="EUR">535.25</InstdAmt> 
+			 </Amt> 
+			 <CdtrAgt> 
+				 <FinInstnId> 
+				 	<BIC>CRBABE22</BIC> 
+				 </FinInstnId> 
+			 </CdtrAgt> 
+			 <Cdtr> 
+				 <Nm>SocMetal</Nm> 
+				 <PstlAdr> 
+					 <Ctry>BE</Ctry> 
+					 <AdrLine>Hoogstraat 156</AdrLine> 
+					 <AdrLine>2000 Antwerp</AdrLine> 
+				 </PstlAdr> 
+			 </Cdtr> 
+			 <CdtrAcct> 
+				 <Id> 
+				 	<IBAN>BE43187123456701</IBAN> 
+				 </Id> 
+			 </CdtrAcct> 
+			 <RmtInf> 
+			 	<Ustrd>Invoice 378265</Ustrd> 
+			 </RmtInf> 
+		 </CdtTrfTxInf> 
+	 </PmtInf> 
+ <PmtInf> 
+	 <PmtInfId> ABC/4560/2010-12-16</PmtInfId> 
+	 <PmtMtd>TRF</PmtMtd> 
+	 <BtchBookg>false</BtchBookg> 
+	 <PmtTpInf> 
+	 <SvcLvl> 
+	 <Cd>SEPA</Cd> 
+	 </SvcLvl> 
+ </PmtTpInf> 
+ <ReqdExctnDt>2010-12-19</ReqdExctnDt> 
+ <Dbtr> 
+ 	<Nm>Cobelfac</Nm> 
+ </Dbtr> 
+ <DbtrAcct> 
+	 <Id> 
+	 	<IBAN>BE68539007547034</IBAN> 
+	 </Id> 
+ </DbtrAcct> 
+ <DbtrAgt> 
+ <FinInstnId> 
+ <BIC>AAAABE33</BIC> 
+ </FinInstnId> 
+ </DbtrAgt> 
+ <CdtTrfTxInf> 
+ <PmtId> 
+ <EndToEndId>ABC/4563/2010-12-18</EndToEndId> 
+ </PmtId> 
+ <Amt> 
+ <InstdAmt Ccy="EUR">1400</InstdAmt> 
+ </Amt> 
+ <CdtrAgt> 
+ <FinInstnId> 
+ <BIC>CCCCBE22</BIC> 
+ </FinInstnId> 
+ </CdtrAgt> 
+ <Cdtr> 
+ <Nm>Telephone Company</Nm> 
+ </Cdtr> 
+ <CdtrAcct> 
+ <Id> 
+ <IBAN>BE31628765432155</IBAN> 
+ </Id> 
+ </CdtrAcct> 
+ <RmtInf> 
+ <Strd> 
+ <CdtrRefInf> 
+ <Tp> 
+ <CdOrPrtry> 
+ <Cd>SCOR</Cd> 
+ </CdOrPrtry> 
+ <Issr>BBA</Issr> 
+ </Tp> 
+ <Ref>010806817183</Ref> 
+ </CdtrRefInf> 
+ </Strd> 
+ </RmtInf> 
+ </CdtTrfTxInf> 
+ </PmtInf> 
+ <PmtInf> 
+ <PmtInfId> ABC/4560/2010-12-17</PmtInfId> 
+ <PmtMtd>TRF</PmtMtd> 
+ <BtchBookg>false</BtchBookg> 
+ <PmtTpInf> 
+ <InstrPrty>HIGH</InstrPrty> 
+ <CtgyPurp>SUPP</CtgyPurp> 
+ </PmtTpInf> 
+ <ReqdExctnDt>2010-12-19</ReqdExctnDt> 
+ <Dbtr> 
+ <Nm>Cobelfac</Nm> 
+ </Dbtr> 
+ <DbtrAcct> 
+ <Id> 
+ <IBAN>BE68539007547034</IBAN> 
+ </Id> 
+ </DbtrAcct> 
+ <DbtrAgt> 
+ <FinInstnId> 
+ <BIC>AAAABE33</BIC> 
+ </FinInstnId> 
+ </DbtrAgt> 
+ <ChrgBr>SHAR</ChrgBr> 
+ <CdtTrfTxInf> 
+ <PmtId> 
+ <EndToEndId>ABC/4564/2010-12-18</EndToEndId> 
+ </PmtId> 
+ <Amt> 
+ <InstdAmt Ccy="USD">72840.75</InstdAmt> 
+ </Amt> 
+ <CdtrAgt> 
+ <FinInstnId> 
+ <BIC>MYBAUS33</BIC> 
+ <ClrSysMmbId> 
+ <ClrSysId> 
+ <Cd>USPID</Cd> 
+ </ClrSysId> 
+ <MmbId>3648</MmbId> 
+ </ClrSysMmbId> 
+ </FinInstnId> 
+ </CdtrAgt> 
+ <Cdtr> 
+ <Nm>General Telephone Cy</Nm> 
+ <PstlAdr> 
+ <Ctry>US</Ctry> 
+ <AdrLine>Highstreet 7b</AdrLine> 
+ <AdrLine>New York</AdrLine> 
+ </PstlAdr> 
+ </Cdtr> 
+ <CdtrAcct> 
+ <Id> 
+ <Othr> 
+ <Id>86379524</Id> 
+ </Othr> 
+ </Id> 
+ </CdtrAcct> 
+ <RmtInf> 
+ <Ustrd> X-Atlantic telephone traffic August</Ustrd> 
+ </RmtInf> 
+ </CdtTrfTxInf> 
+ </PmtInf> 
+</CstmrCdtTrfInitn> 
+</Document> 
