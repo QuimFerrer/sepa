@@ -17,7 +17,7 @@ libreria de funciones misceláneas, comunes a todas las normas.
 Se ha desarrollado pensando en la implementación más simple, para que pueda ser fácilmente trasladable a otros
 paradigmas (OOPS, arrays asociativos) e incluso a otros lenguajes (PHP, Java... )
 
-<em>hbSepa.prg</em> es un embrión de clase OOPS para Harbour, para encapsulación de todas las normas.
+<em>Cuaderno</em> es un embrión de clase OOPS para Harbour, para encapsulación de todas las normas.
 
 
 Construccion y entorno
