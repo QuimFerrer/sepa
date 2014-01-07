@@ -2,11 +2,11 @@
 
 -n -q0 -static
 
--Ic:\hb30\include
-
--osepa.exe
+-osepa
 
 #sources
 ..\sepamisc.prg
 cuaderno.prg 
 sepa.prg  
+
+xhb.hbc

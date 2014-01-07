@@ -49,6 +49,7 @@ function main()
       :Nif( "12345678Z" )
       :CuentaIBAN( "ES0321001234561234567890" )
       :Concepto( 'CONCEPTO DEL ADEUDO FRA.1234' )
+      :Categoria( "SUPP" )
    end with
 
    with object ( oCuaderno:InsertDeudor() )
@@ -65,6 +66,7 @@ function main()
       :Nif( "12345678Z" )
       :CuentaIBAN( "ES0321001234561234567890" )
       :Concepto( 'CONCEPTO DEL ADEUDO FRA.1234' )
+      :Categoria( "SUPP" )
    end with
 
    // Acreedor 2-----------------------------------------------------------------
@@ -97,6 +99,7 @@ function main()
       :Nif( "12345678Z" )
       :CuentaIBAN( "ES0321001234561234567890" )
       :Concepto( 'CONCEPTO DEL ADEUDO FRA.1234' )
+      :Categoria( "SUPP" )
    end with
 
    with object ( oCuaderno:InsertDeudor() )
@@ -113,9 +116,10 @@ function main()
       :Nif( "12345678Z" )
       :CuentaIBAN( "ES0321001234561234567890" )
       :Concepto( 'CONCEPTO DEL ADEUDO FRA.1234' )
+      :Categoria( "SUPP" )
    end with
 
-   oCuaderno:SerializeASCII()
+   oCuaderno:WriteASCII()
 
    __Run( "notepad.exe " + AllTrim( oCuaderno:cFile ) )
 
