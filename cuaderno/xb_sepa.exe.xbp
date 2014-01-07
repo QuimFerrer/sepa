@@ -41,7 +41,7 @@ MYC_FLAGS =
 MYDEFINES = 
 MYPRG_FLAGS = 
 
-[P:\Clients\ERP_Aplitec\sources\comu\xhb\libext\sepa\sepamisc.prg]
+[..\sepamisc.prg]
 MYC_FLAGS = 
 MYDEFINES = 
 MYPRG_FLAGS = 
