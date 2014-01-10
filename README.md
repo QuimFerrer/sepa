@@ -1,15 +1,17 @@
 <h1>SEPA para Harbour</h1>
 <h3>Generación de ficheros para normas AEB (Asociación Española de Banca) 
-adaptadas a SEPA (Single Euro Payments Area), formatos texto (*) y XML<h3>
-<h4>(*)Para periodo transitorio hasta 31-Enero-2016</h4>
+adaptadas a SEPA (Single Euro Payments Area), formatos XML y texto *<h3>
+<p>* Para periodo transitorio hasta 31-Enero-2016</hp>
 =====================================================================
 <ul>
+<li><em>SepaXML </em>Adeudos directos (CORE, COR1 y B2B) y transferencias (formato XML)</li>
 <li><em>aeb1914 </em>Adeudos Directos CORE Direct Debit (para particulares)</li>
 <li><em>aeb1944 </em>Adeudos Directos B2B Direct Debit (entre empresas)</li>
 <li><em>aeb3414 </em>Ordenes en fichero para emision de transferencias y cheques en euros (formato texto).</li>
 <li><em>Cuaderno</em> es un embrión de clase OOPS para Harbour, para encapsulación de todas las normas.</li>
-<li><em>xmlCT   </em>Ordenes en fichero para emision de transferencias y cheques en euros (formato XML).</li>
+<li><em>xmlCT   </em>Ordenes en fichero para emision de transferencias y cheques en euros (formato XML) *</li>
 </ul>
+<p>* A unificar con SepaXML</p>
 
 Otra documentación 
 ------------------
@@ -25,7 +27,7 @@ Calculo de Identificador del acreedor
 
 Uno de los datos importantes del mandato SEPA es el “identificador del acreedor” o “creditor Identifier” que tiene una regla de construcción un poco enrevesada en cuanto al cálculo del código de control.
 
-En Españal formato es este: ESZZXXXAAAAAAAAA, siendo:
+En España el formato es este: ESZZXXXAAAAAAAAA, siendo:
 <ul>
 <li>ES: código del país España según la norma ISO 3166</li>
 <li>ZZ: dígitos de control (cuyo cálculo se explica a continuación)</li>
