@@ -4,9 +4,9 @@ xmlns="urn:iso:std:iso:20022:tech:xsd:pain.008.001.02">
 <CstmrDrctDbtInitn>
 <GrpHdr>
 <MsgId>
-PRE2014010913093147372REMESA001    </MsgId>
+PRE2014011010485738937REMESA001    </MsgId>
 <CreDtTm>
-2014-01-09T13:09:31</CreDtTm>
+2014-01-10T10:48:57</CreDtTm>
 <NbOfTxs>
          3</NbOfTxs>
 <CtrlSum>
@@ -24,7 +24,7 @@ BSABESBBXXX</BICOrBEI>
 </GrpHdr>
 <PmtInf>
 <PmtInfId>
-PRE2014010913093147372REMESA001-0001</PmtInfId>
+PRE2014011010485738937REMESA001-0001</PmtInfId>
 <PmtMtd>
 DD</PmtMtd>
 <BtchBookg>
@@ -53,9 +53,33 @@ NOMBRE DEL ACREEDOR, S.L.</Nm>
 </Cdtr>
 <ChrgBr>
 SLEV</ChrgBr>
+<CdtrSchmeId>
+<Id>
+<PrvtId>
+<Othr>
+<Id>
+B12345678</Id>
+</Othr>
+</PrvtId>
+</Id>
+</CdtrSchmeId>
 <DrctDbtTxInf>
 <InstdAmt Ccy="EUR">
 123.45</InstdAmt>
+<DrctDbtTx>
+<MndtRltdInf>
+<MndtId>
+c3d508f8187da2dbb68302bf08c7c8c3</MndtId>
+<DtOfSgntr>
+2014-02-21</DtOfSgntr>
+</MndtRltdInf>
+</DrctDbtTx>
+<DbtrAgt>
+<FinInstnId>
+<BIC>
+CAIXESBBXXX</BIC>
+</FinInstnId>
+</DbtrAgt>
 <Dbtr>
 <Nm>
 NOMBRE DEL DEUDOR 0001</Nm>
@@ -76,7 +100,7 @@ ES0321001234561234567890</IBAN>
 </PmtInf>
 <PmtInf>
 <PmtInfId>
-PRE2014010913093147372REMESA001-0001</PmtInfId>
+PRE2014011010485738937REMESA001-0001</PmtInfId>
 <PmtMtd>
 DD</PmtMtd>
 <BtchBookg>
@@ -105,9 +129,33 @@ NOMBRE DEL ACREEDOR, S.L.</Nm>
 </Cdtr>
 <ChrgBr>
 SLEV</ChrgBr>
+<CdtrSchmeId>
+<Id>
+<PrvtId>
+<Othr>
+<Id>
+B12345678</Id>
+</Othr>
+</PrvtId>
+</Id>
+</CdtrSchmeId>
 <DrctDbtTxInf>
 <InstdAmt Ccy="EUR">
 246.90</InstdAmt>
+<DrctDbtTx>
+<MndtRltdInf>
+<MndtId>
+c3d508f8187da2dbb68302bf08c7c8c3</MndtId>
+<DtOfSgntr>
+2014-02-21</DtOfSgntr>
+</MndtRltdInf>
+</DrctDbtTx>
+<DbtrAgt>
+<FinInstnId>
+<BIC>
+CAIXESBBXXX</BIC>
+</FinInstnId>
+</DbtrAgt>
 <Dbtr>
 <Nm>
 NOMBRE DEL DEUDOR 0002</Nm>
@@ -128,7 +176,7 @@ ES0321001234561234567890</IBAN>
 </PmtInf>
 <PmtInf>
 <PmtInfId>
-PRE2014010913093147372REMESA001-0001</PmtInfId>
+PRE2014011010485738937REMESA001-0001</PmtInfId>
 <PmtMtd>
 DD</PmtMtd>
 <BtchBookg>
@@ -157,9 +205,33 @@ NOMBRE DEL ACREEDOR, S.L.</Nm>
 </Cdtr>
 <ChrgBr>
 SLEV</ChrgBr>
+<CdtrSchmeId>
+<Id>
+<PrvtId>
+<Othr>
+<Id>
+B12345678</Id>
+</Othr>
+</PrvtId>
+</Id>
+</CdtrSchmeId>
 <DrctDbtTxInf>
 <InstdAmt Ccy="EUR">
 370.35</InstdAmt>
+<DrctDbtTx>
+<MndtRltdInf>
+<MndtId>
+c3d508f8187da2dbb68302bf08c7c8c3</MndtId>
+<DtOfSgntr>
+2014-02-21</DtOfSgntr>
+</MndtRltdInf>
+</DrctDbtTx>
+<DbtrAgt>
+<FinInstnId>
+<BIC>
+CAIXESBBXXX</BIC>
+</FinInstnId>
+</DbtrAgt>
 <Dbtr>
 <Nm>
 NOMBRE DEL DEUDOR 0003</Nm>

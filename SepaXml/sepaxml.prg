@@ -68,6 +68,7 @@ function main()
 	  :nEntity	:= ENTIDAD_JURIDICA
 	  :Nm 		:= "NOMBRE DEL PRESENTADOR, S.L."
 	  :BICOrBEI := "BSABESBBXXX"
+	  :id 		:= "B12345678"
 	ENDWITH
 
    // Acreedor-----------------------------------------------------------------
@@ -75,9 +76,10 @@ function main()
 	  :nEntity	:= ENTIDAD_JURIDICA
 	  :Nm 		:= "NOMBRE DEL ACREEDOR, S.L."
 	  :BICOrBEI := "BSABESBBXXX"
+	  :id 		:= "B12345678"
 	ENDWITH
 	/* Si el Acreedor es tambien el presentador, especificar asi :
-	 * oDoc:oCreditor := oclone( oDoc:oInitPart )
+	 * oDoc:oCreditor := __objClone( oDoc:oInitPart )
  	 */
 
    // Deudor/es----------------------------------------------------------------
@@ -88,10 +90,12 @@ function main()
 		  :Nm 			:= "NOMBRE DEL DEUDOR "+ strzero(n, 4) 
 		  :nEntity		:= ENTIDAD_OTRA
 		  :id 			:= "12345678Z"
-		  :InstdAmt		:= 123.45 * n					// Importe
-		  :ReqdColltnDt := ctod("02-21-2014") + (n*10)	// Fecha de cobro (Vencimiento)
+		  :InstdAmt		:= 123.45 * n						// Importe
+		  :ReqdColltnDt := ctod("02-21-2014") + (n*10)		// Fecha de cobro (Vencimiento)
 		  :IBAN 		:= "ES0321001234561234567890"
 		  :BICOrBEI		:= "CAIXESBBXXX"
+		  :MndtId 		:= hb_md5(oDoc:oCreditor:Id + :id) 	// Identificación del mandato, idea: Utilizar NIF Acreedor + NIF Deudor 
+		  :DtOfSgntr 	:= ctod("02-21-2014") 				// Fecha de firma 
 		ENDWITH
 
 		oDoc:DebtorAdd( oDebtor )
@@ -292,12 +296,12 @@ METHOD DirectDebit( hParent ) CLASS SepaXml
 		FieldNew(4, "UltmtCdtr")	 							// Último acreedor (6)
 		*/
 	 
- 		if ::oDebtor:BIC != NIL
+ 		if ::oDebtor:BICOrBEI != NIL
 	 		hChild := ItemNew(hItem, "DbtrAgt") 			// Entidad del deudor 
 			hChild := ItemNew(hChild, "FinInstnId") 		// Identificación de la entidad 
-			ItemNew(hChild, "BIC", 11, ::oDebtor:BIC)		// BIC 
+			ItemNew(hChild, "BIC", 11, ::oDebtor:BICOrBEI)	// BIC 
 		else
-			aadd( ::aErrors, ::ErrorMessages['SEPA_DEBTOR_AGENT' )
+			aadd( ::aErrors, ::ErrorMessages['SEPA_DEBTOR_AGENT'] )
 		endif
 
 		if ::oDebtor:Nm != NIL 								// Requerido
@@ -553,7 +557,7 @@ METHOD Activate() CLASS SepaXml
 		return(NIL)
 	endif
 
-	if ::NbOfTxs != ::oDebtor:NbOfTxs .or. ::CtrlSum != ::oDebtor:CtrlSum
+	if ::CtrlSum != ::oDebtor:CtrlSum
 		outstd( 'Existen errores, no es posible continuar' )
 		return(NIL)
 	endif
@@ -582,7 +586,7 @@ METHOD Activate() CLASS SepaXml
 	next
 
 	if len( ::aErrors ) > 0
-		outstd( 'Existen errores, no es posible continuar' )
+	aeval( ::aErrors, {|err| outstd( err + hb_eol() ) } )
 	else
 		if ::lMinified
 			mxmlSaveFile( ::hXmlDoc, ::cFileOut, MXML_NO_CALLBACK )
