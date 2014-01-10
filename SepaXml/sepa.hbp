@@ -1,0 +1,17 @@
+#make
+
+-n -q0 -static
+
+#Includes
+-Ic:\hb30\include
+-Lc:\hb30\lib\win\bcc
+
+#libs
+-lhbmxml
+-lmxml
+
+-osepa.exe
+
+#sources
+..\sepamisc.prg
+sepaxml.prg   

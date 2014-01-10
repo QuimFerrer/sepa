@@ -1,14 +1,13 @@
 /* v.1.0 18/12/2013
  * RB SEPA Credit Transfer pain.001.001.03
  * Ordenes en formato ISO 20022 para emisión de transferencias y cheques en euros
+ * Para lenguaje Harbour - http://harbour-project.org
  * (c) Joaquim Ferrer Godoy <quim_ferrer@yahoo.es>
  *
- * Notas:
- * Version para CA-Clipper/Harbour, 'casi en pseudo-codigo', para adaptar 
- * facilmente a otros paradigmas (OOPS, arrays asociativos, etc.) o lenguajes
- * de programación.
- * Las variables no declaradas se pueden sustituir por campos de base de datos
+ * Notas :
+ * Requiere libreria hbmxml
  */
+
 
 #include "hbmxml.ch"
 

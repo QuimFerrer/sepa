@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:iso:std:iso:20022:tech:xsd:pain.008.001.02">
+<CstmrDrctDbtInitn>
+    <GrpHdr>
+        <MsgId>MFISH-20131021195435-wzkR23K</MsgId>
+        <CreDtTm>2013-10-21T19:54:35</CreDtTm>
+        <NbOfTxs>5</NbOfTxs>
+        <CtrlSum>2721.41</CtrlSum>
+        <InitgPty>
+            <Nm>Mobilefish.com</Nm>
+        </InitgPty>
+    </GrpHdr>
+    <PmtInf>
+        <PmtInfId>MFISH-20131021195435-wzkR23K-1</PmtInfId>
+        <PmtMtd>DD</PmtMtd>
+        <NbOfTxs>5</NbOfTxs>
+        <CtrlSum>2721.41</CtrlSum>
+        <PmtTpInf>
+            <SvcLvl>
+                <Cd>SEPA</Cd>
+            </SvcLvl>
+            <LclInstrm>
+                <Cd>CORE</Cd>
+            </LclInstrm>
+            <SeqTp>FRST</SeqTp>
+        </PmtTpInf>
+        <ReqdColltnDt>2013-10-21</ReqdColltnDt>
+        <Cdtr>
+            <Nm>Mobilefish.com</Nm>
+            <PstlAdr>
+                <Ctry>NL</Ctry>
+            </PstlAdr>
+        </Cdtr>
+        <CdtrAcct>
+            <Id>
+                <IBAN>NL71RABO0300300301</IBAN>
+            </Id>
+        </CdtrAcct>
+        <CdtrAgt>
+            <FinInstnId>
+                <BIC>RABONL2U</BIC>
+            </FinInstnId>
+        </CdtrAgt>
+        <UltmtCdtr>
+            <Nm>Mobilefish.com Parent</Nm>
+        </UltmtCdtr>
+        <ChrgBr>SLEV</ChrgBr>
+        <CdtrSchmeId>
+            <Id>
+                <PrvtId>
+                    <Othr>
+                        <Id>NL64ZZZ321096320000</Id>
+                        <SchmeNm>
+                            <Prtry>SEPA</Prtry>
+                        </SchmeNm>
+                    </Othr>
+                </PrvtId>
+            </Id>
+        </CdtrSchmeId>
+        <DrctDbtTxInf>
+            <PmtId>
+                <EndToEndId>MFISH-20131021195435-wzkR23K-1-0001</EndToEndId>
+            </PmtId>
+            <InstdAmt Ccy="EUR">5.00</InstdAmt>
+            <DrctDbtTx>
+                <MndtRltdInf>
+                    <MndtId>NL17ZZZ412004150001</MndtId>
+                    <DtOfSgntr>2012-10-28</DtOfSgntr>
+                    <AmdmntInd>false</AmdmntInd>
+                </MndtRltdInf>
+            </DrctDbtTx>
+            <DbtrAgt>
+                <FinInstnId>
+                    <BIC>INGBNL2A</BIC>
+                </FinInstnId>
+            </DbtrAgt>
+            <Dbtr>
+                <Nm>Greenpeace</Nm>
+                <PstlAdr>
+                    <Ctry>NL</Ctry>
+                    <AdrLine>Jollemanhof 15-17</AdrLine>
+                    <AdrLine>1019 GW Amsterdam</AdrLine>
+                </PstlAdr>
+            </Dbtr>
+            <DbtrAcct>
+                <Id>
+                    <IBAN>NL31INGB0000000044</IBAN>
+                </Id>
+            </DbtrAcct>
+            <UltmtDbtr>
+                <Nm>Greenpeace</Nm>
+            </UltmtDbtr>
+            <RmtInf>
+                <Ustrd>Donation Greenpeace</Ustrd>
+            </RmtInf>
+        </DrctDbtTxInf>
+    </PmtInf>
+</CstmrDrctDbtInitn>
+</Document>

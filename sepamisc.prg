@@ -18,12 +18,23 @@ function fDate( d )
 return( strDate )
 
 
+function sDate( d )
+	local cDateFrm := Set( 4, "yyyy-mm-dd" )
+	local strDate  := If( d != NIL, dtoc(d), dtoc(date()) )
+	Set( 4, cDateFrm )
+return( strDate )
+
+
 function Dec2Str(nVal, nLen)
 	local strVal
 	strVal := str( nVal, nLen +1, 2 )	  // +1 espacio que resta punto decimal
 	strVal := strtran( strVal, "." )      // Quitar punto decimal
 	strVal := strtran( strVal, " ", "0" ) // Reemplazar espacios por 0
 return( strVal )
+
+
+function IsoDateTime()
+return( sDate() +"T"+ time() ) 	  // YYYY-MM-DDThh:mm:ss
 
 
 function OutFile(nHandle, a)

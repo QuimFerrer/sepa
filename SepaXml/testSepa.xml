@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="urn:iso:std:iso:20022:tech:xsd:pain.008.001.02">
+<CstmrDrctDbtInitn>
+<GrpHdr>
+<MsgId>
+PRE2014010913093147372REMESA001    </MsgId>
+<CreDtTm>
+2014-01-09T13:09:31</CreDtTm>
+<NbOfTxs>
+         3</NbOfTxs>
+<CtrlSum>
+740.70</CtrlSum>
+<InitgPty>
+<Nm>
+NOMBRE DEL PRESENTADOR, S.L.</Nm>
+<Id>
+<OrgId>
+<BICOrBEI>
+BSABESBBXXX</BICOrBEI>
+</OrgId>
+</Id>
+</InitgPty>
+</GrpHdr>
+<PmtInf>
+<PmtInfId>
+PRE2014010913093147372REMESA001-0001</PmtInfId>
+<PmtMtd>
+DD</PmtMtd>
+<BtchBookg>
+TRUE</BtchBookg>
+<NbOfTxs>
+         1</NbOfTxs>
+<CtrlSum>
+123.45</CtrlSum>
+<PmtTpInf>
+<SvcLvl>
+<Cd>
+SEPA</Cd>
+</SvcLvl>
+<LclInstrm>
+<Cd>
+CORE</Cd>
+</LclInstrm>
+<SeqTp>
+RCUR</SeqTp>
+</PmtTpInf>
+<ReqdColltnDt>
+2014-03-03</ReqdColltnDt>
+<Cdtr>
+<Nm>
+NOMBRE DEL ACREEDOR, S.L.</Nm>
+</Cdtr>
+<ChrgBr>
+SLEV</ChrgBr>
+<DrctDbtTxInf>
+<InstdAmt Ccy="EUR">
+123.45</InstdAmt>
+<Dbtr>
+<Nm>
+NOMBRE DEL DEUDOR 0001</Nm>
+<Id>
+<Othr>
+<Id>
+12345678Z</Id>
+</Othr>
+</Id>
+</Dbtr>
+<DbtrAcct>
+<Id>
+<IBAN>
+ES0321001234561234567890</IBAN>
+</Id>
+</DbtrAcct>
+</DrctDbtTxInf>
+</PmtInf>
+<PmtInf>
+<PmtInfId>
+PRE2014010913093147372REMESA001-0001</PmtInfId>
+<PmtMtd>
+DD</PmtMtd>
+<BtchBookg>
+TRUE</BtchBookg>
+<NbOfTxs>
+         1</NbOfTxs>
+<CtrlSum>
+246.90</CtrlSum>
+<PmtTpInf>
+<SvcLvl>
+<Cd>
+SEPA</Cd>
+</SvcLvl>
+<LclInstrm>
+<Cd>
+CORE</Cd>
+</LclInstrm>
+<SeqTp>
+RCUR</SeqTp>
+</PmtTpInf>
+<ReqdColltnDt>
+2014-03-13</ReqdColltnDt>
+<Cdtr>
+<Nm>
+NOMBRE DEL ACREEDOR, S.L.</Nm>
+</Cdtr>
+<ChrgBr>
+SLEV</ChrgBr>
+<DrctDbtTxInf>
+<InstdAmt Ccy="EUR">
+246.90</InstdAmt>
+<Dbtr>
+<Nm>
+NOMBRE DEL DEUDOR 0002</Nm>
+<Id>
+<Othr>
+<Id>
+12345678Z</Id>
+</Othr>
+</Id>
+</Dbtr>
+<DbtrAcct>
+<Id>
+<IBAN>
+ES0321001234561234567890</IBAN>
+</Id>
+</DbtrAcct>
+</DrctDbtTxInf>
+</PmtInf>
+<PmtInf>
+<PmtInfId>
+PRE2014010913093147372REMESA001-0001</PmtInfId>
+<PmtMtd>
+DD</PmtMtd>
+<BtchBookg>
+TRUE</BtchBookg>
+<NbOfTxs>
+         1</NbOfTxs>
+<CtrlSum>
+370.35</CtrlSum>
+<PmtTpInf>
+<SvcLvl>
+<Cd>
+SEPA</Cd>
+</SvcLvl>
+<LclInstrm>
+<Cd>
+CORE</Cd>
+</LclInstrm>
+<SeqTp>
+RCUR</SeqTp>
+</PmtTpInf>
+<ReqdColltnDt>
+2014-03-23</ReqdColltnDt>
+<Cdtr>
+<Nm>
+NOMBRE DEL ACREEDOR, S.L.</Nm>
+</Cdtr>
+<ChrgBr>
+SLEV</ChrgBr>
+<DrctDbtTxInf>
+<InstdAmt Ccy="EUR">
+370.35</InstdAmt>
+<Dbtr>
+<Nm>
+NOMBRE DEL DEUDOR 0003</Nm>
+<Id>
+<Othr>
+<Id>
+12345678Z</Id>
+</Othr>
+</Id>
+</Dbtr>
+<DbtrAcct>
+<Id>
+<IBAN>
+ES0321001234561234567890</IBAN>
+</Id>
+</DbtrAcct>
+</DrctDbtTxInf>
+</PmtInf>
+</CstmrDrctDbtInitn>
+</Document>
