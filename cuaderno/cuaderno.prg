@@ -521,6 +521,7 @@ CLASS Deudor FROM Acreedor
    METHOD Dato()                          INLINE ( '003' )
 
    METHOD nTotalRegistros()               INLINE ( 1 )
+   METHOD nTotalImporte()                 INLINE ( ::nImporte )
 
    METHOD Importe( nValue )
 
