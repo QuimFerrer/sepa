@@ -2,6 +2,8 @@
 
 #define CRLF chr( 13 ) + chr( 10 )
 
+#include "hbcompat.ch"
+#include "common.ch"
 //---------------------------------------------------------------------------//
 
 Function DecimalToString( nValue, nLen )
@@ -217,9 +219,31 @@ CLASS Cuaderno
    METHOD Fichero( cValue )               INLINE ( if( !Empty( cValue ), ::cFile             := cValue,                 ::cFile ) )
    METHOD FechaCreacion( dValue )         INLINE ( if( !Empty( dValue ), ::cFechaCreacion    := DateToString( dValue ), ::cFechaCreacion ) )
 
+   Method Mandato()
+
 ENDCLASS
 
+Method Mandato(cPdfResult) CLASS Cuaderno
+Local oAcreedor
+
+If !Empty( ::cDirDocument + ::cPdfForm) .and. File(::cDirDocument + ::cPdfForm)
+   // Gener
+   FOR EACH oAcreedor in ::GetPresentador():aChild
+      oAcreedor:Mandato( ::cDirDocument + ::cPdfForm , cPdfResult )
+   next
+EndIf   
+
+Return ( nil )
+
 //---------------------------------------------------------------------------//
+CLASS Cuaderno1915 FROM Cuaderno1914
+   METHOD New()
+ENDCLASS
+
+METHOD New() CLASS Cuaderno1915
+::cVersionCuaderno := '19154' 
+Return Self
+
 
 CLASS Cuaderno1914 FROM Cuaderno
 
@@ -233,11 +257,7 @@ CLASS Cuaderno1914 FROM Cuaderno
    METHOD InsertAcreedor()                INLINE ( ::GetPresentador():InsertAcreedor() )
    METHOD InsertDeudor()                  INLINE ( ::GetPresentador():GetAcreedor():InsertDeudor() )
 
-   METHOD CodigoRegistro()                INLINE ( '99' )
-
-   METHOD TotalImporte()                  INLINE ( ::oPresentador:TotalImporte() )
-   METHOD TotalRegistros()                INLINE ( strzero( ::oPresentador:nTotalRegistros() ) )
-   METHOD TotalFinalRegistros()           INLINE ( strzero( ::oPresentador:nTotalRegistros() + 5, 10 ) )
+   METHOD CodigoRegistroTotal()           INLINE ( '99' )
 
    METHOD New()
    METHOD WriteASCII()
@@ -275,11 +295,6 @@ ENDCLASS
 
       cBuffer           := ::GetPresentador():SerializeASCII()
 
-      cBuffer           += ::CodigoRegistro()
-      cBuffer           += ::TotalImporte() 
-      cBuffer           += ::TotalRegistros() 
-      cBuffer           += ::TotalFinalRegistros()
-
    Return ( cBuffer )
 
 //---------------------------------------------------------------------------//
@@ -293,6 +308,7 @@ CLASS Presentador
    DATA cReferencia  
 
    DATA cPais                    INIT 'ES'         
+   DATA cNombrePais              INIT 'ESPA¥A'
    DATA cNombre                  INIT space( 70 )       
    DATA cNif                     INIT space( 36 )
 
@@ -306,7 +322,7 @@ CLASS Presentador
    METHOD FechaCreacion()        INLINE ( ::oSender:FechaCreacion() )
 
    METHOD CodigoRegistro()       INLINE ( '01' )
-   METHOD CodigoRegistroTotal()  INLINE ( '05' )
+   METHOD CodigoRegistroTotal()  INLINE ( '99' )
    METHOD Dato()                 INLINE ( '001' )
    METHOD Sufijo( cValue )       INLINE ( if( !Empty( cValue ), ::cSufijo     := padr( cValue, 3 ),   ::cSufijo ) )   
 
@@ -316,6 +332,7 @@ CLASS Presentador
 
    METHOD Nombre( cValue )       INLINE ( if( !Empty( cValue ), ::cNombre     := padr( cValue, 70 ),  ::cNombre ) )
    METHOD Pais( cValue )         INLINE ( if( !Empty( cValue ), ::cPais       := padr( cValue, 2 ),   ::cPais ) )
+   METHOD NombrePais( cValue )   INLINE ( if( !Empty( cValue ), ::cNombrePais := cValue ,   ::cNombrePais ) )
    METHOD Nif( cValue )          INLINE ( if( !Empty( cValue ), ::cNif        := padr( cValue, 36 ),  ::cNif ) )     
 
    METHOD TotalImporte()         INLINE ( DecimalToString( ::nTotalImporte(), 17 ) )
@@ -323,7 +340,7 @@ CLASS Presentador
 
    METHOD TotalRegistros()       INLINE ( strzero( ::nTotalRegistros(), 8 ) )
    METHOD nTotalRegistros()                
-   METHOD TotalFinalRegistros()  INLINE ( strzero( ::nTotalRegistros() + 3, 10 ) )
+   METHOD TotalFinalRegistros()  INLINE ( StrZero( ::nTotalRegistros(.T.) + 2, 10 ) )
 
    METHOD GetAcreedor()          INLINE ( atail( ::aChild ) )
    METHOD InsertAcreedor()       INLINE ( aadd( ::aChild, Acreedor():New( Self ) ), ::GetAcreedor() )
@@ -370,18 +387,18 @@ ENDCLASS
    METHOD nTotalImporte() CLASS Presentador 
 
       local nTotalImporte        := 0
-      
-      aEval( ::aChild, {|o| nTotalImporte += o:nTotalImporte() } )
+
+   	aEval( ::aChild, {|o| nTotalImporte += o:nTotalImporte() } )
 
    Return ( nTotalImporte )
 
    //------------------------------------------------------------------------//
    
-   METHOD nTotalRegistros() CLASS Presentador
+   METHOD nTotalRegistros(lLineas) CLASS Presentador
 
       local nTotalRegistros      := 0
 
-      aEval( ::aChild, {|o| nTotalRegistros += o:nTotalRegistros() } )
+      aEval( ::aChild, {|o| nTotalRegistros += o:nTotalRegistros(lLineas) } )
 
    Return ( nTotalRegistros )
 
@@ -408,11 +425,10 @@ ENDCLASS
       next
 
       cBuffer        += ::CodigoRegistroTotal()
-      cBuffer        += ::Identificador()
       cBuffer        += ::TotalImporte()
       cBuffer        += ::TotalRegistros()
       cBuffer        += ::TotalFinalRegistros()
-      cBuffer        += padr( '', 520 ) + CRLF 
+      cBuffer        += padr( '', 563 ) + CRLF 
 
    Return ( cBuffer )
 
@@ -438,49 +454,113 @@ CLASS Acreedor FROM Presentador
    METHOD FechaCobro( dValue )   INLINE ( if( !Empty( dValue ), ::cFechaCobro    := DateToString( dValue ), ::cFechaCobro ) )
 
    METHOD CodigoRegistro()       INLINE ( '02' )
-   METHOD CodigoRegistroTotal()  INLINE ( '04' )
+   METHOD CodigoRegistroTotalFecha()  	INLINE ( '04' )
+   METHOD CodigoRegistroTotal()  		INLINE ( '05' )
    METHOD Dato()                 INLINE ( '002' )
-
+	METHOD Tipo( cValue )			INLINE ( if( !Empty( cValue ), ::cTipo				:= PadR(cValue,1), ::cTipo ) )
    METHOD GetDeudor()            INLINE ( atail( ::aChild ) )
    METHOD InsertDeudor()         INLINE ( aadd( ::aChild, Deudor():New( Self ) ), ::GetDeudor() )
 
-   METHOD TotalFinalRegistros()  INLINE ( strzero( ::nTotalRegistros() + 2, 10 ) )
+   METHOD TotalFinalRegistros()  INLINE ( strzero( ::nTotalRegistros(.t.), 10 ) )
+   METHOD nTotalRegistros(lLineas) 
 
    METHOD SerializeASCII()
 
+   METHOD Mandato()            
+
 ENDCLASS
 
+   METHOD Mandato( cPdfForm , cPdfResult ) CLASS Acreedor
+   Local oDeudor
+   
+   For Each oDeudor in ::aChild
+      oDeudor:Mandato(cPdfForm , cPdfResult )
+   Next 
+   
+   Return nil
+
    //------------------------------------------------------------------------//
+   METHOD nTotalRegistros(lLineas) CLASS Acreedor
+
+      local nTotalRegistros      := 0
+      Default lLineas To .F.
+      
+		If lLineas
+			nDeudor:= 1
+			Do While Len(::aChild) >= nDeudor
+				nTotalRegistros++
+				cFechaCobro:= ::aChild[nDeudor]:FechaCobro() 
+				Do While Len(::aChild) >= nDeudor .and. cFechaCobro == ::aChild[nDeudor]:FechaCobro() 
+					nTotalRegistros++
+					nDeudor++
+				Enddo
+				nTotalRegistros++
+			Enddo			
+			If nTotalRegistros > 0
+				nTotalRegistros++
+			EndIf
+		Else
+      	aEval( ::aChild, {|o| nTotalRegistros += o:nTotalRegistros() } )
+ 		EndIf
+
+   Return ( nTotalRegistros )
+
 
    METHOD SerializeASCII() CLASS Acreedor
 
-      local oDeudor
+      local oDeudor, nDeudor
       local cBuffer        := ""
 
-      cBuffer              += ::CodigoRegistro()
-      cBuffer              += ::VersionCuaderno()
-      cBuffer              += ::Dato()
-      cBuffer              += ::Identificador()
-      cBuffer              += ::FechaCobro()
-      cBuffer              += ::Nombre()
-      cBuffer              += ::Direccion()
-      cBuffer              += ::Ciudad()
-      cBuffer              += ::Provincia()
-      cBuffer              += ::Pais()
-      cBuffer              += ::CuentaIBAN()
-      cBuffer              := padr( cBuffer, 600 ) + CRLF 
-
-      for each oDeudor in ::aChild
-         cBuffer           += oDeudor:SerializeASCII()
-      next 
-
+		aSort( ::aChild , , , {| x ,y | x:FechaCobro() < y:FechaCobro() } )
+		
+		nDeudor:= 1
+		Do While Len(::aChild) >= nDeudor
+		
+			cFechaCobro:= ::aChild[nDeudor]:FechaCobro() 
+			
+	      cBuffer              += ::CodigoRegistro()
+	      cBuffer              += ::VersionCuaderno()
+	      cBuffer              += ::Dato()
+	      cBuffer              += ::Identificador()
+	      cBuffer              += cFechaCobro
+	      cBuffer              += ::Nombre()
+	      cBuffer              += ::Direccion()
+	      cBuffer              += ::Ciudad()
+	      cBuffer              += ::Provincia()
+	      cBuffer              += ::Pais()
+	      cBuffer              += ::CuentaIBAN()
+	      cBuffer              += Padr( "", 301 ) + CRLF 
+			nTotalImporte			:= 0		      
+			nTotalRegistros 		:= 0		      
+			
+			Do While Len(::aChild) >= nDeudor .and. cFechaCobro == ::aChild[nDeudor]:FechaCobro() 
+				
+	         cBuffer += ::aChild[nDeudor]:SerializeASCII()
+	         
+	         // Acumulacion de variables.
+				nTotalImporte	+= ::aChild[nDeudor]:nTotalImporte()
+				nTotalRegistros+= ::aChild[nDeudor]:nTotalRegistros()
+				
+	         nDeudor++
+   		Enddo
+   		
+   		// Total por fecha de Cobro.
+	      cBuffer              += ::CodigoRegistroTotalFecha()
+	      cBuffer              += ::Identificador()
+	      cBuffer              += cFechaCobro
+	      cBuffer              += DecimalToString( nTotalImporte, 17 )
+	      cBuffer              += StrZero( nTotalRegistros, 8 )
+	      cBuffer              += StrZero( nTotalRegistros + 2 , 10 )
+	      cBuffer              += padr( '', 520 ) + CRLF 
+      Enddo  
+      
+		// Total por acreedor.
       cBuffer              += ::CodigoRegistroTotal()
       cBuffer              += ::Identificador()
-      cBuffer              += ::FechaCobro()
       cBuffer              += ::TotalImporte()
       cBuffer              += ::TotalRegistros()
       cBuffer              += ::TotalFinalRegistros()
-      cBuffer              += padr( '', 520 ) + CRLF 
+      cBuffer              += padr( '', 528 ) + CRLF 
 
    Return ( cBuffer )
 
@@ -511,15 +591,15 @@ CLASS Deudor FROM Acreedor
    METHOD Categoria( cValue )             INLINE ( if( !Empty( cValue ), ::cCategoria           := padr( cValue, 4 ),            ::cCategoria ) )
    METHOD FechaMandato( dValue )          INLINE ( if( !Empty( dValue ), ::cFechaMandato        := DateToString( dValue ),       ::cFechaMandato ) )
    METHOD EntidadBIC( cValue )            INLINE ( if( !Empty( cValue ), ::cEntidadBIC          := padr( cValue, 11 ),           ::cEntidadBIC ) )
-   METHOD Tipo( cValue )                  INLINE ( if( !Empty( cValue ), ::cTipo                := padr( cValue, 1 ),            ::cTipo ) )
    METHOD Emisor( cValue )                INLINE ( if( !Empty( cValue ), ::cEmisor              := padr( cValue, 35 ),           ::cEmisor ) )
    METHOD IdentificadorCuenta( cValue )   INLINE ( if( !Empty( cValue ), ::cIdentificadorCuenta := padr( cValue, 1 ),            ::cIdentificadorCuenta ) )
    METHOD Proposito( cValue )             INLINE ( if( !Empty( cValue ), ::cProposito           := padr( cValue, 4 ),            ::cProposito ) )
    METHOD Concepto( cValue )              INLINE ( if( !Empty( cValue ), ::cConcepto            := padr( cValue, 140 ),          ::cConcepto ) )
-
+	METHOD Tipo( cValue ) 
    METHOD CodigoRegistro()                INLINE ( '03' )
    METHOD Dato()                          INLINE ( '003' )
 
+   METHOD nTotalImporte()               	INLINE ( ::nImporte )
    METHOD nTotalRegistros()               INLINE ( 1 )
    METHOD nTotalImporte()                 INLINE ( ::nImporte )
 
@@ -527,7 +607,110 @@ CLASS Deudor FROM Acreedor
 
    METHOD SerializeASCII()
 
+   METHOD Mandato( )
+   
+   
 ENDCLASS
+
+   METHOD Tipo( cValue ) CLASS Deudor
+   Local cNif
+   If !Empty( cValue )
+		::cTipo:= padr( cValue, 1 )
+	Else
+	   If Empty( ::cTipo )
+    		cNif:= ::Nif()
+    		If !Empty( cNif ) .and. IsDigit(Left(cNif,1)) .and. IsAlpha(Right(cNif,1))
+    			// DNI.
+		    	::cTipo:= "J"
+	    	Else
+		    	::cTipo:= "I"
+			EndIf					    
+	   EndIf
+    	cValue:= ::cTipo
+	EndIf
+	Return PadR(cValue,1)
+
+	
+   METHOD Mandato( cPdfForm , cPdfResult ) CLASS Deudor
+   Local cXml,n:= 1,aDatos[100],cSwift
+   Local cSufijo,cRefMandato,cPathForm
+   Local lRecur:= .T.
+   
+   aFill(aDatos,"")
+   
+   // Referencia Mandato.
+   aDatos[ 1]:= Alltrim(::oSender:Identificador())
+   
+   // Referencia Creditor
+   aDatos[ 2]:= Alltrim( ::oSender:Nif() )
+
+   // Acredor 
+   aDatos[ 3]:= Alltrim(::oSender:Nombre())
+   aDatos[ 4]:= Alltrim(::oSender:Direccion() )
+   aDatos[ 5]:= Alltrim(::oSender:CodigoPostal( ) )
+   aDatos[ 6]:= Alltrim(::oSender:Ciudad( ))
+   aDatos[ 7]:= Alltrim(::oSender:Provincia( ))
+   aDatos[ 8]:= Alltrim(::oSender:NombrePais( ) )
+   
+   // Deudor 
+   aDatos[ 9]:= Alltrim(::Nombre())
+   aDatos[10]:= Alltrim(::Direccion())
+   aDatos[11]:= Alltrim(::CodigoPostal( ))
+   aDatos[12]:= Alltrim(::Ciudad( ))
+   aDatos[13]:= Alltrim(::Provincia( ))
+   aDatos[14]:= Alltrim(::NombrePais( ) )
+   
+   // Asignación de Swift Bic
+   // 15 - 25
+   cSwift:= PadR( ::EntidadBIC() , 11 )
+   xSwift:= ""
+   For n:= 1 To 11
+      aDatos[14+n]:= Substr(cSwift,n,1)
+      xSwift+= Substr(cSwift,n,1)
+   Next
+   // Asignación de IBAN
+   cIban:= PadR( ::CuentaIBAN() , 34 )
+   // 26 - 59
+   For n:= 1 To 34
+      aDatos[25+n]:= Substr(cIban,n,1)
+   Next
+     
+   aDatos[60]:= dtoc( Date() )
+   aDatos[61]:= Alltrim(::oSender:Ciudad( ))
+   
+   // Inicando la generacion de datos de Formulari.
+   cXml:= "<?xml version='1.0' encoding='ISO-8859-1' ?>"+Hb_OsNewLine()
+   cXml+= "<xfdf xmlns='http://ns.adobe.com/xfdf/' xml:space='preserve'>"+Hb_OsNewLine()
+   cXml+= "<fields>"+Hb_OsNewLine()
+   For n:= 1 To 100
+      cXml+= "<field name='c"+alltrim(str(n,3))+"'>"+Hb_OsNewLine()
+      cXml+= "<value>"+aDatos[n]+"</value>"+Hb_OsNewLine()
+      cXml+= "</field>"+Hb_OsNewLine()
+   Next
+   // Tipo de Mandato, si Recurrente "0",si pago Unico "1"
+   cXml+= "<field name='r1'>"+Hb_OsNewLine()
+   cXml+= "<value>"+IIf(lRecur,"0","1")+"</value>"+Hb_OsNewLine()
+   cXml+= "</field>"+Hb_OsNewLine()
+   
+   cXml+= "</fields>"+Hb_OsNewLine()
+   cXml+= "<f href='"+cPdfForm+"' />"+Hb_OsNewLine()
+   cXml+= "</xfdf>"+Hb_OsNewLine()
+   
+   // Creamos el fitxero XML para combinacion de PDF.
+   nHnd:= FCreate( "mandato.xml" )
+   FWrite(nHnd, cXml )
+   FClose(nHnd )
+
+   TRY
+      Hb_FNameSplit( cPdfForm,@cPathForm)
+      cCommand:= cPathForm+"pdftk.exe "+cPdfForm+" fill_form mandato.xml output "+cPdfResult+" dont_ask"
+      oShell := TOleAuto():New( "WScript.Shell" )
+      nRet := oShell:Run( cCommand ,, .T. )
+   CATCH oError
+   
+   END
+   
+   Return Nil
 
    //------------------------------------------------------------------------//
 
