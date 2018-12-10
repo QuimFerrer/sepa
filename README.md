@@ -2,7 +2,7 @@
 <h3>Generación de ficheros para normas AEB (Asociación Española de Banca) 
 adaptadas a SEPA (Single Euro Payments Area), formatos XML y texto *<h3>
 <p>* Para periodo transitorio hasta 31-Enero-2016</hp>
-=====================================================================
+===============================================================
 <ul>
 <li><em>SepaXML </em>Adeudos directos (CORE, COR1 y B2B) y transferencias (formato XML)</li>
 <li><em>aeb1914 </em>Adeudos Directos CORE Direct Debit (para particulares)</li>
