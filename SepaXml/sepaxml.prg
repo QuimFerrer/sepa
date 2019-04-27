@@ -709,19 +709,25 @@ return Self
 
 static function ItemNew(hParent, cLabel, nLen, xValue, cCurrency)
 
- local hItem, cType 
+	local hItem, cType 
 
 	if nLen != NIL 
+
 		if xValue != NIL
 
 			hItem := mxmlNewElement( hParent, cLabel )
 			cType := valtype(xValue)
 
-			if cType == "N"
-				xValue := ltrim( str(xValue, nLen, 2) )
-			elseif cType == "D"
-				xValue := sDate(xValue)
-			endif
+			switch (cType)
+				case "N"
+					xValue := ltrim( str(xValue, nLen, 2) )
+					EXIT
+				case "D"
+					xValue := sDate(xValue)
+					EXIT
+				case "C"
+					xValue := left(xValue, nLen)
+			end
 
 			mxmlNewText( hItem, 0, ltrim(xValue) )
 		endif
